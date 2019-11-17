@@ -1,15 +1,14 @@
 // Things to add:
 // -back button on each card
-// -reset button
-// -start again button
-// -pictures of cheese
+// -animate card transition (?)
 // -refactor selectors for buttons 
+// -refactor for object init
 
 
 
 $(function() {
 
-// *** DOM ELEMENTS VARIABLES ***
+// *** VARIABLES STORING DOM ELEMENTS ***
 
 const $startCard = $('#startCard');
 const $startButton = $('#startButton');
@@ -19,10 +18,8 @@ const $q3 = $('#q3');
 const $q4 = $('#q4');
 const $q5 = $('#q5');
 const $result = $('#result');
-const $img = $('#img');
+const $restart = $('#restart');
 
-
-// *** OTHER VARIABLES ***
 
 
 
@@ -36,7 +33,7 @@ const switchCard = (card1, card2) => {
 
 const showResult = (currentCard, html, imgName) => {
     switchCard(currentCard, $result);
-    $result.append(html).append(`<div class="cheese-img"><img src="./styles/assets/${imgName}.jpg" alt=""></div>`);
+    $('.result h2').after(`<div class="cheese-img"><img src="./styles/assets/${imgName}.jpg" alt=""></div>`).after(html);
 }
 
 // *** LOGIC ***
@@ -105,9 +102,12 @@ $startButton.on('click',function() {
         };
         
     });
-    // End of quiz logic
+    // End of quiz 
 
-
+// reloads the page when the restart button at the end of the quiz is clicked on
+$restart.on('click', function() {
+    location.reload();
+})
 
 
 });
