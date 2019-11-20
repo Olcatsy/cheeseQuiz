@@ -1,5 +1,14 @@
 /* TO DO
-- add gradients to start button?  */
+- figure out button transition problem
+-add and animate cheese SVG to header  */
+
+
+/* COLORS */
+/*  */
+/* #8A44FF - purple */
+/* #FDAF17 - orange button */
+/* #f5c500 - yellow button hover */
+/* #E8B900 - yellow button active */
 
 
 
@@ -71,6 +80,7 @@ h1 {
   font-size: 4.5rem;
   text-transform: uppercase;
   filter: drop-shadow(-4px -2px orange) drop-shadow(-1px -2px 1px hotpink);
+  letter-spacing: 5px;
 }
 
 h2 {
@@ -79,18 +89,12 @@ h2 {
   /* der funky styles */
     /* color:#8A44FF;
     text-shadow: 1px 1px 1px #444; 
-    filter: drop-shadow(5px 5px orange); */
+    filter: drop-shadow(5px 5px orange);
+    filter: drop-shadow(1px 1px hotpink); */
 }
 
-/* COLORS */
-/*  */
-/* #8A44FF - purple */
-/* #FDAF17 - orange button */
-/* #f5c500 - yellow button hover */
-/* #E8B900 - yellow button active */
 
-
-
+/* MAIN STYLES */
 
 body {
     display: flex;
@@ -98,110 +102,132 @@ body {
     text-align: center;
   }
 
-  .wrapper {
-    width: 100%;
-    max-width: 2000px;
-    margin: 0 auto;
-  }
+.wrapper {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
+}
   
-  .question-outer {
-    background-image: url(./assets/cheeseBG.jpg);
-    background-size: contain;
-    width: 100%;
-    height: 85vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.question-outer {
+  background-image: url(./assets/cheeseBG.jpg);
+  background-size: contain;
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   
-  /* Card styles */
-  .card {
-    background-color: rgba(255, 228, 94, 0.75);
-    padding: 30px 70px;
-    width: 80%;
-    max-width: 1000px;
-    border-radius: 45px;
-  }
 
-  .card * {
-    margin: 25px auto;
-  }
-
-  /* questions and result are hidden at the start of the quiz */
-  .question,
-  .result {
-      display: none;
-  }
-
-  /* Buttons styles */
-  .button {
-    text-transform: uppercase;
-    padding: 15px 50px;
-    margin: 0 20px;
-    /* TRANSITION DOESNT WORK */
-    transition: all 0.3s ease-in;
-    border-radius: 8px;
-  }  
-      /* .button:hover,
-      .button:focus {
-        
-      } */
-      
-      .button:active {
-        /* might change this */
-        bottom: -2px;
-      }
-
-  .accent.button {
-    background-color: #8A44FF;
-    background: linear-gradient(270deg, rgba(75,34,143,1) 0%, rgba(138,68,255,1) 100%);
-    color: white;
-    font-size: 2rem;
-    /* font-weight: 600; */
-    letter-spacing: 3px;
-    filter: drop-shadow(2px 2px 1px hotpink) drop-shadow(10px 8px 0px #FDAF17);
-    /* THE TRANSITION DOESNT WORK FOR SOME REASON */
-    transition: all 0.3s ease;
-  }
-
-      .accent.button:hover,
-      .accent.button:focus {
-        background: linear-gradient(90deg, rgb(75, 34, 143) 0%, rgb(138, 68, 255) 100%);
-      }
-
-      /* .accent.button:active {
-        
-      } */
-
-  .choice.button {
-    background-color: #FDAF17;
-    font-size: 1.7rem;
-    font-weight: 700;
-    filter: drop-shadow(1px 2px 1px hotpink);
-  }
-
-      .choice.button:hover,
-      .choice.button:focus {
-        background-color: #f5c500;
-      }
-
-      .choice.button:active {
-        background-color: #E8B900;
-      }
-
-  /* Result styles */
-  .result {
-    display: none;
-    /* background-image: url(./assets/Brie.jpg); */
-    /* background-size: cover; */
-  }
-
-  .cheese-img {
-    max-width: 300px;
+/* BUTTON STYLES */
+.button {
+  text-transform: uppercase;
+  padding: 15px 50px;
+  transition: all 0.4s ease-in-out;
+  border-radius: 8px;
+}  
+    /* .button:hover,
+    .button:focus {} */
     
-  }
+    .button:active {
+      /* might change this */
+      bottom: -2px;
+    }
 
-  .cheese-img img {
-    border-radius: 50%;
-  }
+.accent.button {
+  background-color: #8A44FF;
+  background: linear-gradient(270deg, rgba(75,34,143,1) 0%, rgba(138,68,255,1) 100%);
+  /* to make the animated gradient on hover */
+  background-size: 300% 100%;
+  margin: 35px auto;
+
+  color: white;
+  font-size: 2rem;
+  letter-spacing: 3px;
   
+
+  filter: drop-shadow(2px 2px 1px hotpink) drop-shadow(10px 8px 0px #FDAF17);
+}
+
+    .accent.button:hover,
+    .accent.button:focus {
+      /* background: linear-gradient(90deg, rgb(75, 34, 143) 0%, rgb(138, 68, 255) 100%); */
+      background-position: 50% 0;
+    }
+
+/* Start the quiz button */
+.start.accent.button {
+  display: flex;
+  align-items: center;
+}
+
+.choice.button {
+  margin: 0 20px;
+  background-color: #FDAF17;
+  font-size: 1.7rem;
+  font-weight: 700;
+  filter: drop-shadow(1px 2px 1px hotpink);
+}
+
+    .choice.button:hover,
+    .choice.button:focus {
+      background-color: #f5c500;
+      /* background-color: rebeccapurple; */
+    }
+
+    .choice.button:active {
+      background-color: #E8B900;
+    }
+
+
+
+/* CARD STYLES */
+.card {
+  background-color: rgba(255, 228, 94, 0.75);
+  padding: 30px 70px;
+  width: 80%;
+  max-width: 1000px;
+  border-radius: 45px;
+}
+
+.card * {
+  margin: 25px auto;
+}
+
+.start span {
+  margin: 0;
+}
+
+.cheeseIcon {
+  margin: 0;
+}
+
+/* questions and result are hidden at the start of the quiz */
+.question,
+.result {
+    display: none;
+}
+
+
+/* RESULT STYLES */
+.result {
+  display: none;
+}
+
+.cheese-img {
+  max-width: 300px;
+  
+}
+
+.cheese-img img {
+  border-radius: 50%;
+}
+
+/* @keyframes cheese-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+} */

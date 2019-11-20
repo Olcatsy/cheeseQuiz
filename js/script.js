@@ -28,17 +28,39 @@ const $restart = $('#restart');
 // hides the curent card and shows the next one
 const switchCard = (card1, card2) => {
     $(card1).hide();
-    $(card2).show();
+    $(card2).fadeIn();
 };
 
+// shows the result and a corresponding image
 const showResult = (currentCard, html, imgName) => {
     switchCard(currentCard, $result);
     $('.result h2').after(`<div class="cheese-img"><img src="./styles/assets/${imgName}.jpg" alt=""></div>`).after(html);
 }
 
+// animating cheese
+
+// $.keyframe.define([{
+//     name: 'cheese-rotate',
+//     '0%': {'tranform': 'rotate(20deg)'},
+//     '100%': {'transform': 'rotate(20deg)'}
+// }]);
+
+// $startButton.on('mouseenter', function() {
+//     console.log("hover")
+//     $('#cheese').playKeyFrame({
+//         name: 'cheese-rotate',
+//         duration: '1s',
+//         iterationCount: 'infinite'
+//     });
+// });
+
+
+
 // *** LOGIC ***
 
 // When a button is clicked, the question card switches to the next one, depending on whether 'yes' or 'no' is clicked, and then reveals a result
+
+
 
 // Start the quiz by clicking the START button
 $startButton.on('click',function() {
