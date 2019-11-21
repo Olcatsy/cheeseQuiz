@@ -3,7 +3,6 @@
 // -refactor for object init
 
 
-
 $(function() {
 
 // *** VARIABLES STORING DOM ELEMENTS ***
