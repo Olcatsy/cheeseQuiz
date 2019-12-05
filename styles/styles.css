@@ -90,27 +90,31 @@ h2 {
 
 
 /* MAIN STYLES */
+header {
+  height: 9vh;
+}
 
-body {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-  }
+main {
+  background-image: url(./assets/cheeseBG.jpg);
+  background-size: contain;
+}
 
 .wrapper {
   width: 100%;
   max-width: 2000px;
   margin: 0 auto;
 }
-  
-.question-outer {
-  background-image: url(./assets/cheeseBG.jpg);
-  background-size: contain;
+
+.quiz {
   width: 100%;
   height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.recipes {
+  
 }
   
 

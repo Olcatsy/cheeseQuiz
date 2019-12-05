@@ -6,77 +6,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cheese Quiz!</title>
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,600,|Montserrat:400,500,600,700&display=swap" rel="stylesheet"> 
+    <link
+        href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,600,|Montserrat:400,500,600,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
-<body> 
+<body>
 
-    
-    <div class="wrapper">
-        <h1 class="title">What kind of cheese are you</h1>
+    <header>
+        <div class="wrapper">
+            <h1 class="title">What kind of cheese are you</h1>
+        </div>
+    </header>
 
-        <div class="question-outer">
 
-            <!-- START CARD-->
-            <div id="startCard" class="start card">
 
-                <h2>Answer some questions and learn about your true identity!</h2>
-                <button id="startButton" class="start accent button"><span><img id="cheese" class="cheeseIcon" src="./styles/assets/iconfinder_Cheese_379541.png" alt=""></span> Let's get started<span><img id="cheese" class="cheeseIcon" src="./styles/assets/iconfinder_Cheese_379541.png" alt=""></span></button>
+    <main>
+        <div class="wrapper">
 
-            </div>
+            <!--  -->
+            <section class="quiz">
 
-            <!-- QUESTION 1 (questions are hidden at the start) -->
-            <div id="q1" class="question card">
-                <p>Do you consider yourself a softie?</p>
-                <button data-choice = 'yes' class="choice button">Yes</button>
-                <button data-choice = 'no' class="choice button">No</button>
-            </div>
+                <!-- START CARD-->
+                <div id="startCard" class="start card">
 
-            <!-- QUESTION 2 -->
-            <div id="q2" class="question card">
-                <p>Are you salty?</p>
-                <button data-choice = 'yes' class="choice button">Yes</button>
-                <button data-choice = 'no' class="choice button">No</button>
-            </div>
+                    <h2>Answer some questions and learn about your true identity!</h2>
+                    <button id="startButton" class="start accent button"><span><img id="cheese" class="cheeseIcon"
+                                src="./styles/assets/iconfinder_Cheese_379541.png" alt=""></span> Let's get
+                        started<span><img id="cheese" class="cheeseIcon"
+                                src="./styles/assets/iconfinder_Cheese_379541.png" alt=""></span></button>
 
-            <!-- QUESTION 3 -->
-            <div id="q3" class="question card">
-                <p>Do your friends think you are stinky?</p>
-                <button data-choice = 'yes' class="choice button">Yes</button>
-                <button data-choice = 'no' class="choice button">No</button>
-            </div>
+                </div>
 
-            <!-- QUESTION 4 -->
-            <div id="q4" class="question card">
-                <!-- Not sold on this question yet! -->
-                <p>Are you a crumbly mess</p>
-                <button data-choice = 'yes' class="choice button">Yes</button>
-                <button data-choice = 'no' class="choice button">No</button>
-            </div>
+                <!-- QUESTION 1 (questions are hidden at the start) -->
+                <div id="q1" class="question card">
+                    <p>Do you consider yourself a softie?</p>
+                    <button data-choice='yes' class="choice button">Yes</button>
+                    <button data-choice='no' class="choice button">No</button>
+                </div>
 
-            <!-- QUESTION 5 -->
-            <div id="q5" class="question card">
-                <p>Are you full of delicious smoky flavour?</p>
-                <button data-choice = 'yes' class="choice button">Yes</button>
-                <button data-choice = 'no' class="choice button">No</button>
-            </div>
+                <!-- QUESTION 2 -->
+                <div id="q2" class="question card">
+                    <p>Are you salty?</p>
+                    <button data-choice='yes' class="choice button">Yes</button>
+                    <button data-choice='no' class="choice button">No</button>
+                </div>
 
-            <!-- RESULTS CARD (hidden at the start) -->
-            <div id="result" class="result card">
-                <h2>Wow the results are in!</h2>
-                <!-- the corresponding result's p and img elements are inserted here -->
-                <button id='restart' class="accent button">Do it again</button>
+                <!-- QUESTION 3 -->
+                <div id="q3" class="question card">
+                    <p>Do your friends think you are stinky?</p>
+                    <button data-choice='yes' class="choice button">Yes</button>
+                    <button data-choice='no' class="choice button">No</button>
+                </div>
+
+                <!-- QUESTION 4 -->
+                <div id="q4" class="question card">
+                    <!-- Not sold on this question yet! -->
+                    <p>Are you a crumbly mess</p>
+                    <button data-choice='yes' class="choice button">Yes</button>
+                    <button data-choice='no' class="choice button">No</button>
+                </div>
+
+                <!-- QUESTION 5 -->
+                <div id="q5" class="question card">
+                    <p>Are you full of delicious smoky flavour?</p>
+                    <button data-choice='yes' class="choice button">Yes</button>
+                    <button data-choice='no' class="choice button">No</button>
+                </div>
+
+                <!-- RESULTS CARD (hidden at the start) -->
+                <div id="result" class="result card">
+                    <h2>Wow the results are in!</h2>
+                    <!-- the corresponding result's p and img elements are inserted here -->
+                    <button id='restart' class="accent button">Do it again</button>
+                </div>
+            </section>
+
+            <section class="recipes">
+                <!-- to be dynamically populated with recipes -->
+            </section>
+        </div>
+    </main>
+
+
+    <footer>
+        <div class="wrapper">
+            <div class="copyright">
+                <p>&#169; Olga Filiushkina. Background: <a href="http://www.freepik.com">Designed by Kamimiart /
+                        Freepik</a>
+                </p>
             </div>
         </div>
+    </footer>
 
-        <div class="copyright">
-            <p>&#169; Olga Filiushkina. Background: <a href="http://www.freepik.com">Designed by Kamimiart / Freepik</a></p>
-        </div>
-    </div>
 
-    <script src='https://code.jquery.com/jquery-3.4.0.min.js' integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
-    <script src="js/script.js"></script>
+    <script src='https://code.jquery.com/jquery-3.4.0.min.js'
+        integrity='sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=' crossorigin='anonymous'></script>
+    <script src="js/new-script.js"></script>
 </body>
 
 </html>
