@@ -231,7 +231,11 @@ app.getRecipes = (cheese) => {
 
 // APP INIT
 app.init = function() {
+    // start the quiz
     $startButton.on('click', app.playQuiz);
+
+    // $('#q1 button').on('click', function() {};
+
     $restart.on('click', app.restartQuiz);
     app.getRecipes(cheeseResult);
 };
