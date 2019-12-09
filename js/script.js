@@ -4,6 +4,7 @@
 // ✔ add recipes with API
 // -refactor logic 😥😥😥
 // -add diet filter (meat-based or vegetarian)
+// -recipes card should only show up on  results reveal
 
 const app = {};
 
@@ -110,6 +111,29 @@ app.showResult = (currentCard, cheese) => {
     $('.result h2').after(`<div class="cheese-img"><img src="${cheeses[cheese].imgUrl}" alt="${cheeses[cheese].name}"></div>`).after(cheeses[cheese].htmlText);
 };
 
+// accepts an object returned by the ajax call, and uses it to populate the recipes container with recipe cards
+app.populateRecipesContainer = (data) => {
+    // an array of returned recipes
+    let recipes = data.hits; 
+    recipes.forEach(recipe => {
+        let recipeName = recipe.recipe.label;
+        let recipeImg = recipe.recipe.image;
+        let recipeLink = recipe.recipe.url;
+
+        let htmlToAppend = 
+        `<div class="recipe">
+            <h4>${recipeName}</h4>
+            <div>
+                <img src="${recipeImg}" alt="${recipeName}" class="recipe-img">
+            </div>
+            <a href="${recipeLink}" class="recipe-link">Get this recipe</a>
+        </div>`;
+
+        $('.recipes-inner').append(htmlToAppend);
+    });
+};
+
+
 // QUIZ LOGIC
 app.playQuiz = function() {
 
@@ -185,34 +209,12 @@ app.playQuiz = function() {
     // End of quiz
 };
 
-// Restart button
+// Restart 
 app.restartQuiz = () => {
     location.reload();
 };
 
-// accepts an object returned by the ajax call, and uses it to populate the recipes container with recipe cards
-app.populateRecipesContainer = (data) => {
-    // an array of returned recipes
-    let recipes = data.hits; 
-    recipes.forEach(recipe => {
-        let recipeName = recipe.recipe.label;
-        let recipeImg = recipe.recipe.image;
-        let recipeLink = recipe.recipe.url;
-
-        let htmlToAppend = 
-        `<div class="recipe">
-            <p>${recipeName}</p>
-            <div>
-                <img src="${recipeImg}" alt="">
-            </div>
-            <a href="${recipeLink}">Get this recipe</a>
-        </div>`;
-
-        $('.recipes').append(htmlToAppend);
-    });
-};
-
-// ajax call to get recipes that contain the resulting cheese
+// AJAX call to get recipes that contain the resulting cheese
 app.getRecipes = (cheese) => {
     $.ajax({
         url: `https://api.edamam.com/search?q=${cheese}&app_id=4b162b07&app_key=656ed04cb31bd5c95520ca0791d403af&&`,
@@ -221,10 +223,6 @@ app.getRecipes = (cheese) => {
     }).then(data => app.populateRecipesContainer(data));
 };
 
-app.getVegetarianRecipes = (cheese) => {
-
-}
-
 
 // APP INIT
 app.init = function() {
@@ -232,7 +230,6 @@ app.init = function() {
     $restart.on('click', app.restartQuiz);
     app.getRecipes(cheeseResult);
 };
-
 
 // DOC READY
 $(function() {
