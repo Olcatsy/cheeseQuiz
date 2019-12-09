@@ -90,8 +90,6 @@ const questions = {
     }
 };
 
-
-
 // HELPER FUNCTIONS
 
 // hides the curent card and shows the next one
@@ -101,9 +99,13 @@ app.switchCard = (card1, card2) => {
 };
 
 // shows the result and a corresponding image
-app.showResult = (currentCard, cheese) => {
-    // app.switchCard(currentCard, $result);
-    $('.result h2').after(`<div class="cheese-img"><img src="${cheeses[cheese].imgUrl}" alt="${cheeses[cheese].name}"></div>`).after(cheeses[cheese].htmlText);
+app.showResult = (cheese) => {
+    let name = cheeses[cheese].name;
+    // console.log(name)
+    let img = cheeses[cheese].imgUrl;
+    let txt = cheeses[cheese].htmlText;
+
+    $('.result h2').after(`<div class="cheese-img"><img src="${img}" alt="${name}"></div>`).after(txt);
 };
 
 // accepts an object returned by the ajax call, and uses it to populate the recipes container with recipe cards
@@ -128,90 +130,51 @@ app.populateRecipesContainer = (data) => {
     });
 };
 
-app.answerQuestion = function(currentCard, nextCardYes, nextCardNo) {
-    // obj
-    // let currentQuestion = questions.currentCard;
-    if ($(this).data('choice') === 'yes') {
+app.answerQuestion = function(button, currentCard, nextCardYes, nextCardNo) {
+    // checks whether yes or no button is pressed
+    if (button.data('choice') === 'yes') {
+        // displays the next card
         app.switchCard(currentCard, nextCardYes);
+
+        // checks if the result needs to be displayed and if yes, displays it
+        if (currentCard === $q3) {
+            // RESULT: Gorgonzola
+            cheeseResult = 'gorgonzola';
+            app.showResult(cheeseResult);
+            app.getRecipes(cheeseResult);
+        } else if (currentCard === $q4) {
+            // RESULT: Goat cheese
+            cheeseResult = 'goat-cheese';
+            app.showResult(cheeseResult);
+            app.getRecipes(cheeseResult);
+        } else if (currentCard === $q5) {
+            // RESULT: smoked gouda
+            cheeseResult = 'smoked-gouda';
+            app.showResult(cheeseResult);
+            app.getRecipes(cheeseResult);
+        }
     } else {
+        // displays the next card
         app.switchCard(currentCard, nextCardNo);
+
+        // checks if the result needs to be displayed
+        if (currentCard === '$q3') {
+            // RESULT: Feta
+            cheeseResult = 'feta';
+            app.showResult(cheeseResult);
+            app.getRecipes(cheeseResult);
+        } else if (currentCard === $q4) {
+            // RESULT: brie
+            cheeseResult = 'brie';
+            app.showResult(cheeseResult);
+            app.getRecipes(cheeseResult);
+        } else if (currentCard === $q5) {
+            // RESULT: manchego
+            cheeseResult = 'manchego';
+            app.showResult(cheeseResult);
+            app.getRecipes(cheeseResult);
+        }
     }
-};
-
-
-// QUIZ LOGIC
-app.playQuiz = function() {
-
-    // goes to the QUESTION 1 - Do you consider yourself a softie?
-    app.switchCard($startCard, $q1);
-
-    // listens for a button click, switches cards depending on whether YES or NO is selected
-    $('#q1 button').on('click', function() {
-
-        if ($(this).data("choice") === 'yes') {
-            // goes to QUESTION 2 - Are you salty?
-            app.switchCard($q1, $q2);
-            
-            $('#q2 button').on('click', function() {
-                if ($(this).data('choice') === 'yes') {
-                    // goes to QUESTION 3 - Do your friends think you are stinky?
-                    app.switchCard($q2, $q3);
-
-                    $('#q3 button').on('click', function() {
-                        if($(this).data('choice') === 'yes') {
-                            // RESULT: Gorgonzola
-                            cheeseResult = 'gorgonzola'
-                            app.showResult($q3, cheeseResult);
-                            app.getRecipes(cheeseResult);
-                        } else {
-                            // RESULT: Feta
-                            cheeseResult = 'feta'
-                            app.showResult($q3, cheeseResult);
-                            app.getRecipes(cheeseResult);
-                        };
-                    })
-                    
-                } else {
-                    // goest to QUESTION 4 - Are you a crumbly mess?
-                    app.switchCard($q2, $q4);
-
-                    $('#q4 button').on('click', function() {
-                        if($(this).data('choice') === 'yes') {
-                            // RESULT: goat cheese
-                            cheeseResult = 'goat-cheese'
-                            app.showResult($q4, cheeseResult);
-                            app.getRecipes(cheeseResult);
-
-                        } else {
-                            // RESULT: brie
-                            cheeseResult = 'brie'
-                            app.showResult($q4, cheeseResult);
-                            app.getRecipes(cheeseResult);
-                        };
-                    });
-                };
-            });
-        } else {
-            // goes to question 5
-            app.switchCard($q1, $q5);
-
-            $('#q5 button').on('click', function() {
-                if ($(this).data('choice') === 'yes') {
-                    // RESULT: smoked gouda
-                    cheeseResult = 'smoked-gouda'
-                    app.showResult($q5, cheeseResult);
-                    app.getRecipes(cheeseResult);
-
-                } else {
-                    // RESULT: manchego
-                    cheeseResult = 'manchego'
-                    app.showResult($q5, cheeseResult);
-                    app.getRecipes(cheeseResult);
-                };
-            });
-        };
-    });
-    // End of quiz
 };
 
 // Restart 
@@ -232,10 +195,35 @@ app.getRecipes = (cheese) => {
 // APP INIT
 app.init = function() {
     // start the quiz
-    $startButton.on('click', app.playQuiz);
+    $startButton.on('click', function(){
+        app.switchCard($startCard, $q1);
+    });
 
-    // $('#q1 button').on('click', function() {};
+    // Answer QUESTION 1 - Do you consider yourself a softie?
+    $('#q1 button').on('click', function() {
+        app.answerQuestion($(this), $q1, $q2, $q5);
+    });
 
+    // Answer QUESTION 2 - Are you salty?
+    $('#q2 button').on('click', function() {
+        app.answerQuestion($(this), $q2, $q3, $q4);
+    });
+
+    // Answer QEUESTION 3 - Do your friends think you are stinky?
+    $('#q3 button').on('click', function() {
+        app.answerQuestion($(this), $q3, $result, $result);
+    });
+
+    // Answer QEUESTION 4 - Are you a crumbly mess?
+    $('#q4 button').on('click', function() {
+        app.answerQuestion($(this), $q4, $result, $result);
+    });
+    // Answer QEUESTION 5 - Are you full of delicious smoky flavour?
+    $('#q5 button').on('click', function() {
+        app.answerQuestion($(this), $q5, $result, $result);
+    });
+
+    // restarts the quiz
     $restart.on('click', app.restartQuiz);
     app.getRecipes(cheeseResult);
 };
