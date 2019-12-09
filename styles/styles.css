@@ -3,7 +3,6 @@
 /* #8A44FF - purple */
 /* #FDAF17 - orange */
 /* #f5c500 - yellow button hover */
-/* #E8B900 - yellow button active */
 /* #CFB3FF - lavender */
 
 
@@ -122,7 +121,6 @@ h4 {
   background-color: #8A44FF;
   background: linear-gradient(270deg, rgba(75,34,143,1) 0%, rgba(138,68,255,1) 100%);
   background-size: 300% 100%;
-  margin: 35px auto;
 
   color: white;
   font-size: 2rem;
@@ -154,11 +152,11 @@ h4 {
 
     .choice.button:hover,
     .choice.button:focus {
-      background-color: #f5c500;
+      background-color: #FF9000
     }
 
     .choice.button:active {
-      background-color: #E8B900;
+      background-color: #FF9000
     }
 
 
@@ -236,11 +234,15 @@ main {
 
 
 /****9. RECIPES****/
+.recipes-container {
+  margin-top: 70px;
+}
 
 .recipes-inner {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  margin-top: 50px;
 }
 
 .recipe {

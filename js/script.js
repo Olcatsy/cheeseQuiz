@@ -65,31 +65,26 @@ const cheeses = {
 const questions = {
     q1: {
         name: q1,
-        domSelector: $('#q1'),
         yes: q2,
         no: q5
     },
     q2: {
         name: q2,
-        domSelector: $('#q2'),
         yes: q3,
         no: q4
     },
     q3: {
         name: q3,
-        domSelector: $('#q3'),
         yes: result,
         no: result
     },
     q4: {
         name: q4,
-        domSelector: $('#q4'),
         yes: result,
         no: result,
     },
     q5: {
         name: q5,
-        domSelector: $('#q5'),
         yes: result,
         no: result,
     }
@@ -107,7 +102,7 @@ app.switchCard = (card1, card2) => {
 
 // shows the result and a corresponding image
 app.showResult = (currentCard, cheese) => {
-    app.switchCard(currentCard, $result);
+    // app.switchCard(currentCard, $result);
     $('.result h2').after(`<div class="cheese-img"><img src="${cheeses[cheese].imgUrl}" alt="${cheeses[cheese].name}"></div>`).after(cheeses[cheese].htmlText);
 };
 
@@ -131,6 +126,16 @@ app.populateRecipesContainer = (data) => {
 
         $('.recipes-inner').append(htmlToAppend);
     });
+};
+
+app.answerQuestion = function(currentCard, nextCardYes, nextCardNo) {
+    // obj
+    // let currentQuestion = questions.currentCard;
+    if ($(this).data('choice') === 'yes') {
+        app.switchCard(currentCard, nextCardYes);
+    } else {
+        app.switchCard(currentCard, nextCardNo);
+    }
 };
 
 
